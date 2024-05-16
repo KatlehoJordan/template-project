@@ -64,7 +64,9 @@ Now `poetry install` should work successfully.
 
 If/when prompted by VS Code, allow it to use the locally-installed virtual environment. You may need to do this also by launching the command palette with and selecting `Python: Select Interpreter`. This may also need to be done the first time you activate any Jupyter notebooks by selecting the correct kernel.
 
-Thereafter, every new terminal you launch should automatically use the correct virtual environment and the shell prompt should indicate this and running `echo $POETRY_ACTIVE` should return `1`.
+Thereafter, every new terminal you launch should automatically use the correct virtual environment and the shell prompt should indicate this.
+
+Running `echo $POETRY_ACTIVE` does not seem to reliably return `1`, as expected. However, you should be able to verify your virtual environment is activated by running `which python` and seeing that it points to the `.venv` directory in the project folder.
 
 ## Getting started with python
 
