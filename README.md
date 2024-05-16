@@ -10,9 +10,17 @@ It is presumed that you have `pyenv` and `poetry` installed. See your `dot-files
 
 Follow these steps to create a new project:
 
+1. From the root of the directory, run `sh scripts/setup-poetry.sh`.
+2. Then update this readme and other files as needed.
+
+Alternatively:
+
 1. Copy this folder into its own directory.
-2. Open `pyproject.toml` and rename the project according to your needs.
-3. Run `poetry install` to install the dependencies.
+2. Remove the `.git` directory (and run `git init` to start a new repository if desired).
+3. Open `pyproject.toml` and rename the project according to your needs.
+4. If you are on Windows, use `poetry env use python.bat` to create the virtual environment. If/when prompted by VS Code, allow it to use the locally-installed virtual environment.
+5. Run `poetry install` to install the dependencies.
+6. Then update this readme and other files as needed.
 
 ### Troubleshooting setup
 
@@ -52,21 +60,15 @@ rm python.exe
 rm python3.exe
 ```
 
-If you still fail to get `poetry` to use the `pyenv local <version>` when trying `poetry install`, modify `poetry` to use the `bat` files instead:
+## Verifying virtual environment is set up
 
-```sh
-poetry env use python.bat
-```
-
-This will create a `.venv` directory in the project directory with a local `python` installation that should be compatible with the project.
-
-Now `poetry install` should work successfully.
-
-If/when prompted by VS Code, allow it to use the locally-installed virtual environment. You may need to do this also by launching the command palette with and selecting `Python: Select Interpreter`. This may also need to be done the first time you activate any Jupyter notebooks by selecting the correct kernel.
+After using `poetry install`, you may want to restart VS Code and waiting for the "Reactivating terminal..." message in the bottom-left of the VS Code window to resolve.
 
 Thereafter, every new terminal you launch should automatically use the correct virtual environment and the shell prompt should indicate this.
 
-Running `echo $POETRY_ACTIVE` does not seem to reliably return `1`, as expected. However, you should be able to verify your virtual environment is activated by running `which python` and seeing that it points to the `.venv` directory in the project folder.
+You should be able to verify your virtual environment is activated by running `which python` and seeing that it points to the `.venv` directory in the project folder. Another way to verify is to see if you can start `ipython`, since it should be in the virtual environment but not installed system-wide. Running `echo $POETRY_ACTIVE` does not seem to reliably return `1`, as expected, however.
+
+To use the environment in scripts and notebooks, you will probably need to specify the correct interpreter. Launch the command palette and select `Python: Select Interpreter`. This may also need to be done the first time you activate any Jupyter notebooks by selecting the correct kernel.
 
 ## Getting started with python
 
